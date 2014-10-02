@@ -38,6 +38,10 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+#provide our get_profile()
+AUTH_PROFILE_MODULE = 'drinkers.Drinker'
+
+
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
@@ -45,8 +49,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'south',
-    'signups',
+    'drinkers',
     )
 
 MIDDLEWARE_CLASSES = (

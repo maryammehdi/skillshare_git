@@ -15,6 +15,7 @@ urlpatterns = patterns('',
     url(r'^thank-you/$', 'signups.views.thankyou', name='thankyou'),
     url(r'^about-us/$', 'signups.views.aboutus', name='aboutus'),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^register/$', 'drinkers.views.DrinkerRegistration'),
 )
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL,
