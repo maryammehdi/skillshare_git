@@ -12,7 +12,7 @@ class RegistrationForm(ModelForm):
     
     class Meta:
         model = Drinker
-        exclude = ('USer',)
+        exclude = ('User',)
         
     def clean_username(self):
         username = self.cleaned_data['username']
@@ -21,11 +21,10 @@ class RegistrationForm(ModelForm):
             User.objects.get(username=username)
         except User.DoesNotExist:
             return username
-        return forms.ValidateError("that username is already taken, please select another.")
+        raise forms.ValidationError("that username is already taken, please select another.")
     
-    def clean_password(self):
-        password = self.cleaned_data['password']
-        password1 = self.cleaned_data['password1']
-        if password != password1:
-            raise forms.ValidationError("Passwords did cnot match, please try again.")
-        return password
+    def clean(self):
+        print self.cleaned_data
+        if self.cleaned_data['password'] != self.cleaned_data['password1']:
+            raise forms.ValidationError("The passwords did not match. Please try again.")
+        return self.cleaned_data
